@@ -4,7 +4,24 @@ import dateparser
 from datetime import timedelta
 import pandas as pd
 
-COLUMN_HEADERS = ["cluster_id", "lat", "long", "weekday", "hour", "date", "t/u", "index"]
+# usage: filter [-h] [--input INPUT] [--output OUTPUT] [--days DAYS]
+#               [--hour HOUR] [--hour-range HOUR_RANGE] [--date DATE]
+#               [--date-range DATE_RANGE]
+#
+# optional arguments:
+#   -h, --help            show this help message and exit
+#   --input INPUT         input path to csv file
+#   --output OUTPUT       output path to write filtered results
+#   --days DAYS           [filter] comma seperated list of days of week
+#   --hour HOUR           [filter] hour to filter on (24hr format)
+#   --hour-range HOUR_RANGE
+#                         [filter] comma seperated start and end hours, ex 0,12
+#   --date DATE           [filter] date to filter on (ex. 2014/08/17)
+#   --date-range DATE_RANGE
+#                         [filter] comma seperated date range (ex.
+#                         2014/08/17,2014/08/18)
+
+COLUMN_HEADERS = ["cluster_id", "lat", "long", "weekday", "hour", "date", "type", "index"]
 DATE_FORMAT = "%Y/%m/%d"
 DAY_OF_WEEK = {
     0: 'Monday',
@@ -185,8 +202,8 @@ def build_filters(args):
 
 def main():
     parser = argparse.ArgumentParser("filter")
-    parser.add_argument("--input", type=str, help="input file path for filtering")
-    parser.add_argument("--output", type=str, help="output file path")
+    parser.add_argument("--input", type=str, required=True, help="input path to csv file")
+    parser.add_argument("--output", type=str, help="output path to write filtered results")
     parser.add_argument("--days", type=str, help="[filter] comma seperated list of days of week")
     parser.add_argument("--hour", type=int, help="[filter] hour to filter on (24hr format)")
     parser.add_argument("--hour-range", type=str, help="[filter] comma seperated start and end hours, ex 0,12")
@@ -201,8 +218,11 @@ def main():
         mask = build_mask(df, filters)
         df = df[mask]
 
+    if args.output:
     # TODO: write to 'output' path using the same format as input
-    print(df)
+        print(df)
+    else:
+        print(df)
 
 if __name__ == '__main__':
     main()
