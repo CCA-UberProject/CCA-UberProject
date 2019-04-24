@@ -178,7 +178,7 @@ class HourRangeFilter(Filter):
 def build_mask(df, filters):
     mask = 1 == 1
     for f in filters:
-        print('Applying filter: {}'.format(f))
+        # print('Applying filter: {}'.format(f))
         mask &= f.is_match(df)
     return mask
 
@@ -212,15 +212,15 @@ def main():
     args = parser.parse_args()
     filters = build_filters(args)
 
-    # TODO: what is the input type of the file? we may also need to add headers
+    # TODO: verify input file type and fields, may also need to add headers
     df = pd.read_csv(args.input)
     if filters:
         mask = build_mask(df, filters)
         df = df[mask]
 
     if args.output:
-    # TODO: write to 'output' path using the same format as input
-        print(df)
+        # TODO: ensure output file type is the same as input file type
+        df.to_csv(args.output, index = None, header=True)
     else:
         print(df)
 
