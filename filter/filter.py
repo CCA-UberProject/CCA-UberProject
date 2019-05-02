@@ -27,15 +27,10 @@ from botocore.config import Config
 #                         [filter] comma seperated date range (ex.
 #                         2014/08/17,2014/08/18)
 
-# your bucket access creds here
-AWS_ACCESS_KEY = 'XXX'
-AWS_SECRET_KEY = 'XXX'
-
-# s3 buckets
+AWS_ACCESS_KEY = 'AKIAJIQCIWWG7IKCTMMQ'
+AWS_SECRET_KEY = 'zU8oJKhYKzbByX3oZMirvThRgUYhiL9varonNWWG'
 DEFAULT_INPUT_BUCKET = 'cs498s3mapstore'
 DEFAULT_OUTPUT_BUCKET = 'cs498s3mapstore-filtered'
-
-# stuff for formatting and filtering
 COLUMN_HEADERS = ["cluster_id", "lat", "long", "weekday", "date", "hour", "type"]
 DATE_FORMAT = "%Y/%m/%d"
 DAY_OF_WEEK = {
