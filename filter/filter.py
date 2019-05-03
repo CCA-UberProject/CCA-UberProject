@@ -27,8 +27,8 @@ from botocore.config import Config
 #                         [filter] comma seperated date range (ex.
 #                         2014/08/17,2014/08/18)
 
-AWS_ACCESS_KEY = 'AKIAJIQCIWWG7IKCTMMQ'
-AWS_SECRET_KEY = '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'
+AWS_ACCESS_KEY = 'XXX'
+AWS_SECRET_KEY = 'XXX'
 DEFAULT_INPUT_BUCKET = 'cs498s3mapstore'
 DEFAULT_OUTPUT_BUCKET = 'cs498s3mapstore-filtered'
 COLUMN_HEADERS = ["cluster_id", "lat", "long", "weekday", "date", "hour", "type"]
